@@ -1,0 +1,28 @@
+
+
+
+
+ANALOG_INPUT i, Delay_Time;
+
+ANALOG_OUTPUT o;
+
+
+
+
+
+CHANGE i
+{
+	If( !i )
+	{	
+		Wait( Delay_Time, DelayedOutput )
+		{
+			o = i;		
+		}	
+	} 
+	Else
+	{
+		CancelWait( DelayedOutput );
+		o = i;
+	}
+}
+

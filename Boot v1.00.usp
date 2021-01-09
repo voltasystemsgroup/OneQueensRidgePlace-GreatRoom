@@ -1,0 +1,36 @@
+#DEFAULT_VOLATILE
+
+
+DIGITAL_INPUT 	RESET_FIRST_BOOT;
+DIGITAL_OUTPUT 	PRE_BOOT,
+				FIRST_BOOT,
+				FIRST_BOOT_COMPLETED_FB, 
+				BOOT;
+
+Nonvolatile String sBootFirst[ 64 ];
+
+PUSH RESET_FIRST_BOOT
+{
+	FIRST_BOOT_COMPLETED_FB = 0;
+	sBootFirst = "";	
+}
+
+Function Main( )
+{	
+	Pulse( 1, PRE_BOOT );
+	
+	WaitForInitializationComplete( );
+	
+	If( sBootFirst != "I Have Booted For The First Time Already!!" )
+	{
+		Pulse( 1, FIRST_BOOT );
+		FIRST_BOOT_COMPLETED_FB = 1;
+		sBootFirst = "I Have Booted For The First Time Already!!";		
+	}
+	Else
+	{
+		FIRST_BOOT_COMPLETED_FB = 1;
+	}
+	
+	Pulse( 1, BOOT );
+}

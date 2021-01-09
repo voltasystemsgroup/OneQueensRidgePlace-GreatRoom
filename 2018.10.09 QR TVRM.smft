@@ -1,0 +1,13 @@
+<Device Model="DMPS3-4K-150-C">
+   <Network Type="Cresnet" Id="06">
+      <Device Model="CNX-B8" DeviceId="03" Name="CNX-B8 [KP01][BILLIARDSRM]"/>
+      <Device Model="C2N-IO" DeviceId="0A"/>
+      <Device Model="C2N-AMP-4x100" DeviceId="33"/>
+      <Device Model="CNX-B8" DeviceId="61" Name="CNX-B8[KP02][BARISTA]"/>
+   </Network>
+   <Network Type="Ethernet" Id="07">
+      <Device Model="Crestron_App" DeviceId="04" Name="Crestron App"/>
+      <Device Model="Crestron_App" DeviceId="05" Name="Crestron App"/>
+      <Device Model="CEN-NSP-1" DeviceId="20"/>
+   </Network>
+</Device>

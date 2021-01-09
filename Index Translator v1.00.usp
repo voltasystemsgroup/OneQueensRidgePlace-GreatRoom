@@ -1,0 +1,42 @@
+
+#DEFAULT_VOLATILE
+
+#DEFINE_CONSTANT MAX_IO 48
+#DEFINE_CONSTANT MAX_X 	48 
+
+
+ 
+ANALOG_INPUT Y[ MAX_IO ], X[ MAX_IO ];
+ANALOG_OUTPUT OUTPUT[ MAX_IO ];
+
+Integer gnInitComplete;
+
+CHANGE X
+{
+	Integer nLMAI;
+	
+	If( gnInitComplete )
+	{
+		nLMAI = GetLastModifiedArrayIndex( );
+		
+		If( X[ nLMAI ] = 0 )
+		{
+			OUTPUT[ nLMAI ] = 0;
+		}
+		Else If( X[ nLMAI ] > 0 && X[ nLMAI ] <= MAX_X )
+		{
+			If( Y[ X[ nLMAI ] ] )
+			{
+				OUTPUT[ nLMAI ] = Y[ X[ nLMAI ] ];
+			}
+		}
+	}
+	
+}
+
+Function Main( )
+{
+	gnInitComplete = 0;
+	gnInitComplete = !WaitForInitializationComplete( );
+}
+

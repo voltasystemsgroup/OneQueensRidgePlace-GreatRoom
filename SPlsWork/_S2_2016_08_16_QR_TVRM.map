@@ -1,0 +1,683 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x80000000         0x00500000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000000                __DYNAMIC=0x0
+                0x00400000                PROVIDE (__stack, 0x400000)
+                0x00000000                PROVIDE (hardware_init_hook, 0x0)
+                0x00000000                PROVIDE (_hardware_init_hook, 0x0)
+                0x00000000                PROVIDE (software_init_hook, 0x0)
+                0x00000000                PROVIDE (_software_init_hook, 0x0)
+
+.text           0x80000000    0x71e20
+ *(.text)
+ .text          0x80000000      0x258 S2_String_Check.o
+                0x80000000                S2_String_Check_EventHandler
+                0x8000017e                S2_String_CheckEventHandler00000
+                0x800000bc                S2_String_Check_main
+ .text          0x80000258      0x94a S2_MPS_Text_Centering.o
+                0x80000710                S2_MPS_Text_CenteringEventHandler00000
+                0x800009c2                S2_MPS_Text_Centering_main
+                0x800008f2                S2_MPS_Text_Centering_EventHandler
+ *fill*         0x80000ba2        0x2
+ .text          0x80000ba4      0xe48 S2_Knob_Acceleration__Pkt_.o
+                0x80001518                S2_Knob_Acceleration__Pkt__main
+                0x800011a6                S2_Knob_Acceleration__Pkt_EventHandler00000
+                0x8000143a                S2_Knob_Acceleration__Pkt__EventHandler
+ .text          0x800019ec     0x5420 S2_DMPS_Text_Router_v1_0.o
+                0x80006c44                S2_DMPS_Text_Router_v1_0EventHandler00009
+                0x80006bee                S2_DMPS_Text_Router_v1_0EventHandler00008
+                0x800061aa                S2_DMPS_Text_Router_v1_0_main
+                0x8000689c                S2_DMPS_Text_Router_v1_0EventHandler00001
+                0x80006a8e                S2_DMPS_Text_Router_v1_0EventHandler00004
+                0x80006d8a                S2_DMPS_Text_Router_v1_0EventHandler0000B
+                0x80006b1a                S2_DMPS_Text_Router_v1_0EventHandler00007
+                0x8000697a                S2_DMPS_Text_Router_v1_0EventHandler00002
+                0x80005f66                S2_DMPS_Text_Router_v1_0_EventHandler
+                0x800067be                S2_DMPS_Text_Router_v1_0EventHandler00000
+                0x80003c78                S2_DMPS_Text_Router_v1_0EventHandler00005
+                0x80004c2a                S2_DMPS_Text_Router_v1_0EventHandler00006
+                0x80006a02                S2_DMPS_Text_Router_v1_0EventHandler00003
+                0x80006ce6                S2_DMPS_Text_Router_v1_0EventHandler0000A
+ .text          0x80006e0c    0x4be18 S2_DMPS_Installer_Tools_v1_13.o
+                0x80042190                S2_DMPS_Installer_Tools_v1_13EventHandler00029
+                0x80044cb0                S2_DMPS_Installer_Tools_v1_13EventHandler00051
+                0x8003fbf0                S2_DMPS_Installer_Tools_v1_13EventHandler00014
+                0x8005257a                S2_DMPS_Installer_Tools_v1_13EventHandler00044
+                0x80016cea                S2_DMPS_Installer_Tools_v1_13EventHandler00001
+                0x80012936                S2_DMPS_Installer_Tools_v1_13KEYPADIDWAIT
+                0x80051fec                S2_DMPS_Installer_Tools_v1_13EventHandler0003B
+                0x80052264                S2_DMPS_Installer_Tools_v1_13EventHandler0003F
+                0x8001fc56                S2_DMPS_Installer_Tools_v1_13EventHandler00006
+                0x800523a0                S2_DMPS_Installer_Tools_v1_13EventHandler00041
+                0x8001b00a                S2_DMPS_Installer_Tools_v1_13EventHandler00004
+                0x80052752                S2_DMPS_Installer_Tools_v1_13EventHandler00047
+                0x80043a62                S2_DMPS_Installer_Tools_v1_13EventHandler0004D
+                0x80046d84                S2_DMPS_Installer_Tools_v1_13_main
+                0x800255d4                S2_DMPS_Installer_Tools_v1_13EventHandler0000A
+                0x80042ce8                S2_DMPS_Installer_Tools_v1_13EventHandler0002F
+                0x80051762                S2_DMPS_Installer_Tools_v1_13EventHandler00011
+                0x80052b46                S2_DMPS_Installer_Tools_v1_13EventHandler00054
+                0x80040cc6                S2_DMPS_Installer_Tools_v1_13EventHandler0001B
+                0x80024c86                S2_DMPS_Installer_Tools_v1_13EventHandler00008
+                0x8005288a                S2_DMPS_Installer_Tools_v1_13EventHandler00049
+                0x80052bda                S2_DMPS_Installer_Tools_v1_13EventHandler00056
+                0x80051eb0                S2_DMPS_Installer_Tools_v1_13EventHandler00039
+                0x800517ee                S2_DMPS_Installer_Tools_v1_13EventHandler00019
+                0x80041636                S2_DMPS_Installer_Tools_v1_13EventHandler00022
+                0x80041cbe                S2_DMPS_Installer_Tools_v1_13EventHandler00026
+                0x800516e6                S2_DMPS_Installer_Tools_v1_13PASSWORDWAIT
+                0x800521c6                S2_DMPS_Installer_Tools_v1_13EventHandler0003E
+                0x80052926                S2_DMPS_Installer_Tools_v1_13EventHandler0004A
+                0x80040ffe                S2_DMPS_Installer_Tools_v1_13EventHandler0001C
+                0x8004352a                S2_DMPS_Installer_Tools_v1_13EventHandler00032
+                0x80052afc                S2_DMPS_Installer_Tools_v1_13EventHandler00053
+                0x800424b0                S2_DMPS_Installer_Tools_v1_13EventHandler0002B
+                0x800403cc                S2_DMPS_Installer_Tools_v1_13EventHandler00016
+                0x80051b9a                S2_DMPS_Installer_Tools_v1_13EventHandler00034
+                0x8003ddda                S2_DMPS_Installer_Tools_v1_13EventHandler0000E
+                0x80046c60                S2_DMPS_Installer_Tools_v1_13_EventHandler
+                0x800526b6                S2_DMPS_Installer_Tools_v1_13EventHandler00046
+                0x8002575c                S2_DMPS_Installer_Tools_v1_13EventHandler0000B
+                0x80052a5e                S2_DMPS_Installer_Tools_v1_13EventHandler0004E
+                0x800172e6                S2_DMPS_Installer_Tools_v1_13EventHandler00003
+                0x80052302                S2_DMPS_Installer_Tools_v1_13EventHandler00040
+                0x80051f4e                S2_DMPS_Installer_Tools_v1_13EventHandler0003A
+                0x8001b53e                S2_DMPS_Installer_Tools_v1_13EventHandler00005
+                0x800527ee                S2_DMPS_Installer_Tools_v1_13EventHandler00048
+                0x80052b90                S2_DMPS_Installer_Tools_v1_13EventHandler00055
+                0x80051a2a                S2_DMPS_Installer_Tools_v1_13EventHandler0001E
+                0x8002544c                S2_DMPS_Installer_Tools_v1_13EventHandler00009
+                0x80043400                S2_DMPS_Installer_Tools_v1_13EventHandler00031
+                0x8003e474                S2_DMPS_Installer_Tools_v1_13EventHandler00010
+                0x8004197a                S2_DMPS_Installer_Tools_v1_13EventHandler00024
+                0x8004373e                S2_DMPS_Installer_Tools_v1_13EventHandler0004C
+                0x8004295c                S2_DMPS_Installer_Tools_v1_13EventHandler0002E
+                0x80051cd6                S2_DMPS_Installer_Tools_v1_13EventHandler00036
+                0x80042002                S2_DMPS_Installer_Tools_v1_13EventHandler00028
+                0x80051e12                S2_DMPS_Installer_Tools_v1_13EventHandler00038
+                0x8003d91e                S2_DMPS_Installer_Tools_v1_13RESTOREAUDIODEFAULTSWAIT
+                0x8004263e                S2_DMPS_Installer_Tools_v1_13EventHandler0002C
+                0x800407ba                S2_DMPS_Installer_Tools_v1_13EventHandler00017
+                0x8003db7c                S2_DMPS_Installer_Tools_v1_13RESTOREDEFAULTSWAIT
+                0x800529c2                S2_DMPS_Installer_Tools_v1_13EventHandler0004B
+                0x80051afc                S2_DMPS_Installer_Tools_v1_13EventHandler00033
+                0x8004451e                S2_DMPS_Installer_Tools_v1_13EventHandler00050
+                0x80042320                S2_DMPS_Installer_Tools_v1_13EventHandler0002A
+                0x8003faaa                S2_DMPS_Installer_Tools_v1_13EventHandler00013
+                0x80045442                S2_DMPS_Installer_Tools_v1_13EventHandler00052
+                0x8003ffde                S2_DMPS_Installer_Tools_v1_13EventHandler00015
+                0x80029752                S2_DMPS_Installer_Tools_v1_13EventHandler0000C
+                0x80043d8c                S2_DMPS_Installer_Tools_v1_13EventHandler0004F
+                0x8005208a                S2_DMPS_Installer_Tools_v1_13EventHandler0003C
+                0x800298ca                S2_DMPS_Installer_Tools_v1_13EventHandler0000D
+                0x80045f7e                S2_DMPS_Installer_Tools_v1_13EventHandler00058
+                0x800524dc                S2_DMPS_Installer_Tools_v1_13EventHandler00043
+                0x80016696                S2_DMPS_Installer_Tools_v1_13EventHandler00000
+                0x8002041c                S2_DMPS_Installer_Tools_v1_13EventHandler00007
+                0x8005243e                S2_DMPS_Installer_Tools_v1_13EventHandler00042
+                0x80052618                S2_DMPS_Installer_Tools_v1_13EventHandler00045
+                0x80051724                S2_DMPS_Installer_Tools_v1_13WRONGPASSWORDWAIT
+                0x8001704a                S2_DMPS_Installer_Tools_v1_13EventHandler00002
+                0x8003ea88                S2_DMPS_Installer_Tools_v1_13EventHandler00012
+                0x80045bd4                S2_DMPS_Installer_Tools_v1_13EventHandler00057
+                0x800518c6                S2_DMPS_Installer_Tools_v1_13EventHandler0001A
+                0x8004118c                S2_DMPS_Installer_Tools_v1_13EventHandler0001F
+                0x80043074                S2_DMPS_Installer_Tools_v1_13EventHandler00030
+                0x80051d74                S2_DMPS_Installer_Tools_v1_13EventHandler00037
+                0x8003e148                S2_DMPS_Installer_Tools_v1_13EventHandler0000F
+                0x800417d8                S2_DMPS_Installer_Tools_v1_13EventHandler00023
+                0x80041b1c                S2_DMPS_Installer_Tools_v1_13EventHandler00025
+                0x800427cc                S2_DMPS_Installer_Tools_v1_13EventHandler0002D
+                0x80040a40                S2_DMPS_Installer_Tools_v1_13EventHandler00018
+                0x800414a8                S2_DMPS_Installer_Tools_v1_13EventHandler00021
+                0x8004131a                S2_DMPS_Installer_Tools_v1_13EventHandler00020
+                0x80041e60                S2_DMPS_Installer_Tools_v1_13EventHandler00027
+                0x8005199e                S2_DMPS_Installer_Tools_v1_13EventHandler0001D
+                0x80051c38                S2_DMPS_Installer_Tools_v1_13EventHandler00035
+                0x80052128                S2_DMPS_Installer_Tools_v1_13EventHandler0003D
+ .text          0x80052c24     0x2168 S2_APAD_Long_Text_Edit.o
+                0x80054ca4                S2_APAD_Long_Text_EditEventHandler0000D
+                0x800546fe                S2_APAD_Long_Text_Edit_main
+                0x80053958                S2_APAD_Long_Text_EditEventHandler00005
+                0x800548f2                S2_APAD_Long_Text_EditEventHandler00002
+                0x80054b6e                S2_APAD_Long_Text_EditEventHandler0000A
+                0x80053f50                S2_APAD_Long_Text_EditEventHandler00007
+                0x80054baa                S2_APAD_Long_Text_EditEventHandler0000B
+                0x80053b80                S2_APAD_Long_Text_EditEventHandler00006
+                0x800549b4                S2_APAD_Long_Text_EditEventHandler00003
+                0x80054be6                S2_APAD_Long_Text_EditEventHandler0000C
+                0x80054a4c                S2_APAD_Long_Text_EditEventHandler00008
+                0x80054618                S2_APAD_Long_Text_Edit_EventHandler
+                0x8005432a                S2_APAD_Long_Text_EditEventHandler00009
+                0x80053442                S2_APAD_Long_Text_EditEventHandler00000
+                0x800536f6                S2_APAD_Long_Text_EditEventHandler00004
+                0x8005359c                S2_APAD_Long_Text_EditEventHandler00001
+ .text          0x80054d8c     0x1078 S2_UserProgCmd_Interface_v1_0.o
+                0x80054ea6                S2_UserProgCmd_Interface_v1_0EventHandler00000
+                0x80055c8c                S2_UserProgCmd_Interface_v1_0_main
+                0x80055ba8                S2_UserProgCmd_Interface_v1_0_EventHandler
+ .text          0x80055e04      0x34c S2_UserProgCmd_Interface_Serial_To_Analog_v1_0.o
+                0x80055f02                S2_UserProgCmd_Interface_Serial_To_Analog_v1_0_main
+                0x80055e04                S2_UserProgCmd_Interface_Serial_To_Analog_v1_0_EventHandler
+                0x800560c0                S2_UserProgCmd_Interface_Serial_To_Analog_v1_0EventHandler00001
+                0x80055fce                S2_UserProgCmd_Interface_Serial_To_Analog_v1_0EventHandler00000
+ .text          0x80056150     0x32b4 S2_DMPS_System_Info_V1_0_2.o
+                0x80058f96                S2_DMPS_System_Info_V1_0_2EventHandler00002
+                0x80059362                S2_DMPS_System_Info_V1_0_2EventHandler00008
+                0x8005921e                S2_DMPS_System_Info_V1_0_2EventHandler00006
+                0x80056150                S2_DMPS_System_Info_V1_0_2EventHandler00000
+                0x80059038                S2_DMPS_System_Info_V1_0_2EventHandler00003
+                0x80058c28                S2_DMPS_System_Info_V1_0_2_EventHandler
+                0x80058cda                S2_DMPS_System_Info_V1_0_2_main
+                0x80056558                S2_DMPS_System_Info_V1_0_2EventHandler00001
+                0x80058ee2                S2_DMPS_System_Info_V1_0_2__SPLS_TMPVAR__WAITLABEL_0__
+                0x8005917c                S2_DMPS_System_Info_V1_0_2EventHandler00005
+                0x800590da                S2_DMPS_System_Info_V1_0_2EventHandler00004
+                0x800592c0                S2_DMPS_System_Info_V1_0_2EventHandler00007
+ .text          0x80059404     0x1e9c S2_Single_Line_Scroller_v1_2.o
+                0x80059ab4                S2_Single_Line_Scroller_v1_2EventHandler00000
+                0x8005a08a                S2_Single_Line_Scroller_v1_2EventHandler00001
+                0x8005ae64                S2_Single_Line_Scroller_v1_2_main
+                0x8005a22a                S2_Single_Line_Scroller_v1_2EventHandler00002
+                0x8005b212                S2_Single_Line_Scroller_v1_2EventHandler00006
+                0x8005aa82                S2_Single_Line_Scroller_v1_2EventHandler00007
+                0x8005ad98                S2_Single_Line_Scroller_v1_2_EventHandler
+                0x8005a86a                S2_Single_Line_Scroller_v1_2EventHandler00005
+                0x8005a47e                S2_Single_Line_Scroller_v1_2EventHandler00003
+                0x8005a6be                S2_Single_Line_Scroller_v1_2EventHandler00004
+ .text          0x8005b2a0     0x1140 S2_IP_Address_Edit_with_Up_Down.o
+                0x8005c368                S2_IP_Address_Edit_with_Up_DownEventHandler00000
+                0x8005c3a4                S2_IP_Address_Edit_with_Up_DownEventHandler00001
+                0x8005bfbc                S2_IP_Address_Edit_with_Up_Down_EventHandler
+                0x8005c0aa                S2_IP_Address_Edit_with_Up_Down_main
+ .text          0x8005c3e0      0xd38 S2_IP_Address_Edit_Acceleration.o
+                0x8005c8b4                S2_IP_Address_Edit_AccelerationEventHandler00000
+                0x8005cb48                S2_IP_Address_Edit_Acceleration_EventHandler
+                0x8005cc26                S2_IP_Address_Edit_Acceleration_main
+ .text          0x8005d118      0x53c S2_DMPS_Analog_To_String_Conversion_v1_1.o
+                0x8005d118                S2_DMPS_Analog_To_String_Conversion_v1_1EventHandler00000
+                0x8005d538                S2_DMPS_Analog_To_String_Conversion_v1_1_EventHandler
+                0x8005d5f4                S2_DMPS_Analog_To_String_Conversion_v1_1_main
+ .text          0x8005d654      0x31c S2_DMPS_String_to_Analog_Conversion_v1_1.o
+                0x8005d8e0                S2_DMPS_String_to_Analog_Conversion_v1_1_main
+                0x8005d654                S2_DMPS_String_to_Analog_Conversion_v1_1EventHandler00000
+                0x8005d83a                S2_DMPS_String_to_Analog_Conversion_v1_1_EventHandler
+ .text          0x8005d970      0x21e S2_Dynamic_Zero_Delay__v1_00.o
+                0x8005da10                S2_Dynamic_Zero_Delay__v1_00DELAYEDOUTPUT
+                0x8005daac                S2_Dynamic_Zero_Delay__v1_00EventHandler00000
+                0x8005d970                S2_Dynamic_Zero_Delay__v1_00_EventHandler
+                0x8005da66                S2_Dynamic_Zero_Delay__v1_00_main
+ *fill*         0x8005db8e        0x2
+ .text          0x8005db90      0x330 S2_Index_Translator_v1_00.o
+                0x8005dd18                S2_Index_Translator_v1_00_EventHandler
+                0x8005db90                S2_Index_Translator_v1_00EventHandler00000
+                0x8005dde2                S2_Index_Translator_v1_00_main
+ .text          0x8005dec0      0x33c S2_Managed_Power___Input_f_x__v1_02.o
+                0x8005dec0                S2_Managed_Power___Input_f_x__v1_02EventHandler00000
+                0x8005e052                S2_Managed_Power___Input_f_x__v1_02_EventHandler
+                0x8005e11c                S2_Managed_Power___Input_f_x__v1_02_main
+ .text          0x8005e1fc      0xe1c S2_Managed_Power___Input_v1_00.o
+                0x8005eeac                S2_Managed_Power___Input_v1_00EventHandler00003
+                0x8005ed1c                S2_Managed_Power___Input_v1_00_EventHandler
+                0x8005e7e0                S2_Managed_Power___Input_v1_00EventHandler00002
+                0x8005e50a                S2_Managed_Power___Input_v1_00EventHandler00000
+                0x8005edca                S2_Managed_Power___Input_v1_00_main
+                0x8005e65a                S2_Managed_Power___Input_v1_00EventHandler00001
+                0x8005ef68                S2_Managed_Power___Input_v1_00EventHandler00005
+                0x8005ea9a                S2_Managed_Power___Input_v1_00EventHandler00004
+ .text          0x8005f018      0x196 S2_Digital_Edge_Detection_v1_00.o
+                0x8005f162                S2_Digital_Edge_Detection_v1_00EventHandler00001
+                0x8005f118                S2_Digital_Edge_Detection_v1_00EventHandler00000
+                0x8005f018                S2_Digital_Edge_Detection_v1_00_EventHandler
+                0x8005f0d2                S2_Digital_Edge_Detection_v1_00_main
+ *fill*         0x8005f1ae        0x2
+ .text          0x8005f1b0      0x3ec S2_Managed_Power_v1_00.o
+                0x8005f4f0                S2_Managed_Power_v1_00EventHandler00002
+                0x8005f376                S2_Managed_Power_v1_00_main
+                0x8005f446                S2_Managed_Power_v1_00EventHandler00000
+                0x8005f3bc                S2_Managed_Power_v1_00_EventHandler
+                0x8005f530                S2_Managed_Power_v1_00EventHandler00003
+                0x8005f486                S2_Managed_Power_v1_00EventHandler00001
+ .text          0x8005f59c     0x5632 S2_DirecTV_Ethernet_Control_v1_02.o
+                0x80063a66                S2_DirecTV_Ethernet_Control_v1_02EventHandler00034
+                0x800619c8                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001B
+                0x800637ca                S2_DirecTV_Ethernet_Control_v1_02EventHandler00032
+                0x8005f68e                S2_DirecTV_Ethernet_Control_v1_02EventHandler00000
+                0x80063e50                S2_DirecTV_Ethernet_Control_v1_02EventHandler00037
+                0x800622ea                S2_DirecTV_Ethernet_Control_v1_02EventHandler00022
+                0x8005fbc6                S2_DirecTV_Ethernet_Control_v1_02EventHandler00004
+                0x80062ea8                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002B
+                0x80060636                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000C
+                0x8006187a                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001A
+                0x80061490                S2_DirecTV_Ethernet_Control_v1_02EventHandler00017
+                0x800604e8                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000B
+                0x800633e0                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002F
+                0x80060f58                S2_DirecTV_Ethernet_Control_v1_02EventHandler00013
+                0x8005fd14                S2_DirecTV_Ethernet_Control_v1_02EventHandler00005
+                0x8006172c                S2_DirecTV_Ethernet_Control_v1_02EventHandler00019
+                0x80062c0c                S2_DirecTV_Ethernet_Control_v1_02EventHandler00029
+                0x8006204e                S2_DirecTV_Ethernet_Control_v1_02EventHandler00020
+                0x80060b6e                S2_DirecTV_Ethernet_Control_v1_02EventHandler00010
+                0x80063144                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002D
+                0x80062d5a                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002A
+                0x80063d02                S2_DirecTV_Ethernet_Control_v1_02EventHandler00036
+                0x800608d2                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000E
+                0x8006352e                S2_DirecTV_Ethernet_Control_v1_02EventHandler00030
+                0x80063918                S2_DirecTV_Ethernet_Control_v1_02EventHandler00033
+                0x8006024c                S2_DirecTV_Ethernet_Control_v1_02EventHandler00009
+                0x800626d4                S2_DirecTV_Ethernet_Control_v1_02EventHandler00025
+                0x80062438                S2_DirecTV_Ethernet_Control_v1_02EventHandler00023
+                0x80064a62                S2_DirecTV_Ethernet_Control_v1_02_main
+                0x80064092                S2_DirecTV_Ethernet_Control_v1_02EventHandler00039
+                0x8005fa78                S2_DirecTV_Ethernet_Control_v1_02EventHandler00003
+                0x80060784                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000D
+                0x8005f7dc                S2_DirecTV_Ethernet_Control_v1_02EventHandler00001
+                0x800611f4                S2_DirecTV_Ethernet_Control_v1_02EventHandler00015
+                0x80062822                S2_DirecTV_Ethernet_Control_v1_02EventHandler00026
+                0x800615de                S2_DirecTV_Ethernet_Control_v1_02EventHandler00018
+                0x80061c64                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001D
+                0x800600fe                S2_DirecTV_Ethernet_Control_v1_02EventHandler00008
+                0x8006039a                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000A
+                0x8005fe62                S2_DirecTV_Ethernet_Control_v1_02EventHandler00006
+                0x80060cbc                S2_DirecTV_Ethernet_Control_v1_02EventHandler00011
+                0x80063292                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002E
+                0x80061b16                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001C
+                0x80062abe                S2_DirecTV_Ethernet_Control_v1_02EventHandler00028
+                0x8006367c                S2_DirecTV_Ethernet_Control_v1_02EventHandler00031
+                0x80063f9e                S2_DirecTV_Ethernet_Control_v1_02EventHandler00038
+                0x80064b00                S2_DirecTV_Ethernet_Control_v1_02EventHandler0003A
+                0x80062ff6                S2_DirecTV_Ethernet_Control_v1_02EventHandler0002C
+                0x80062586                S2_DirecTV_Ethernet_Control_v1_02EventHandler00024
+                0x8005f92a                S2_DirecTV_Ethernet_Control_v1_02EventHandler00002
+                0x80061342                S2_DirecTV_Ethernet_Control_v1_02EventHandler00016
+                0x80062970                S2_DirecTV_Ethernet_Control_v1_02EventHandler00027
+                0x800610a6                S2_DirecTV_Ethernet_Control_v1_02EventHandler00014
+                0x80061db2                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001E
+                0x80064938                S2_DirecTV_Ethernet_Control_v1_02_EventHandler
+                0x8006219c                S2_DirecTV_Ethernet_Control_v1_02EventHandler00021
+                0x80060e0a                S2_DirecTV_Ethernet_Control_v1_02EventHandler00012
+                0x80061f00                S2_DirecTV_Ethernet_Control_v1_02EventHandler0001F
+                0x80060a20                S2_DirecTV_Ethernet_Control_v1_02EventHandler0000F
+                0x80063bb4                S2_DirecTV_Ethernet_Control_v1_02EventHandler00035
+                0x8005ffb0                S2_DirecTV_Ethernet_Control_v1_02EventHandler00007
+ *fill*         0x80064bce        0x2
+ .text          0x80064bd0     0x5836 library.o
+                0x80068dbc                RotateRightLong
+                0x800693ca                IsSystem
+                0x80068d20                Seed
+                0x80066618                Remove
+                0x8006899c                Ltoa
+                0x800686c8                Atoi
+                0x80067a30                InitRampInfoArray
+                0x80069176                Right
+                0x8006a1a6                LockInputSema
+                0x80068c4a                Mod
+                0x80068e32                Getc
+                0x80068b7e                SMuldiv
+                0x800693ac                IsHidden
+                0x80068a62                Min
+                0x80069fba                hextosi
+                0x80069550                WriteIntegerArray
+                0x80069ac6                GetSignedIntArrayElementPtr
+                0x800683ea                CheckStructArray
+                0x80069fce                hextosl
+                0x800696d6                WriteSignedIntegerArray
+                0x800680b2                InitStringParamArray
+                0x80067384                ReadSignedLongIntegerArray
+                0x800662a6                GatherToDelimiter
+                0x80067ed6                InitStringArray
+                0x80068a3c                Max
+                0x80069406                IsReadOnly
+                0x80068b46                SMax
+                0x8006644a                GatherByLength
+                0x800688d6                Chr
+                0x80069528                ReadSignedLongInteger
+                0x80068954                Itohex
+                0x8006835c                GetStructArrayElement
+                0x80068650                UNS_SetByte
+                0x8006914a                ReverseFindi
+                0x8006782c                ReadStringArray
+                0x800698d6                GetIntArrayElementPtr
+                0x80068f86                Lower
+                0x80068d3c                RotateLeft
+                0x8006a0ee                ResizeIfAutogrow
+                0x80067b5c                CheckInputArray
+                0x8006513e                ResizeStringArray
+                0x80068868                Atosl
+                0x80068690                High
+                0x80068cec                Rnd
+                0x80068c0e                UMod
+                0x80068d92                RotateLeftLong
+                0x8006a21a                FindNumericChar
+                0x80069d1e                CheckIOArrayBounds2
+                0x80069364                MakeProgramFilename
+                0x80068b62                SMin
+                0x80068eba                Left
+                0x80068dfc                CheckBufferThreshold
+                0x800694e0                ReadSignedInteger
+                0x800686ba                LowWord
+                0x80064bd0                Bit
+                0x80069490                ReadLongInteger
+                0x800684ce                Byte
+                0x800699ce                GetLongArrayElementPtr
+                0x8006911c                ReverseFind
+                0x8006937a                GetSeries
+                0x8006a2e6                InitTcpServer
+                0x80068f6e                Len
+                0x80069dee                InitializeRampInfoInternal
+                0x80068a88                Divide
+                0x800687d4                Atol
+                0x80069370                GetModelNumber
+                0x80069cb6                CheckIOArrayBounds
+                0x80067bb6                CheckStringInputArray
+                0x80069798                WriteSignedLongIntegerArray
+                0x800682a6                GetStringArrayElement
+                0x800689e0                Ltohex
+                0x8006890c                Itoa
+                0x80068d66                RotateRight
+                0x80066906                InternalReverseFind
+                0x80069470                WriteLongInteger
+                0x80067dda                InitDynamicStringStruct
+                0x80067ccc                SetStringArray
+                0x80067162                ReadSignedIntegerArray
+                0x80067c10                SetOutputArray
+                0x80069420                WriteInteger
+                0x8006823a                InitStructDynamicArray
+                0x80066b90                SetString
+                0x80068c86                Random
+                0x800694b8                WriteSignedInteger
+                0x80064e34                Find
+                0x80069384                GetProgramNumber
+                0x8006905a                Mid
+                0x8006a258                InitTcpClient
+                0x80065d22                ResizeStructArray
+                0x80069bbe                GetSignedLongArrayElementPtr
+                0x80069fe0                hextol
+                0x800675a6                ReadString
+                0x80067f6c                InitDynamicStringArray
+                0x8006a0c6                UpperChar
+                0x80068764                Atosi
+                0x80069448                ReadInteger
+                0x80068afa                Muldiv
+                0x80067c7e                SetStringOutputArray
+                0x8006985c                WriteString
+                0x80065796                ResizeIntegerArray
+                0x80067b24                InitInOutArray
+                0x8006817a                InitNvramStringArray
+                0x80068a24                Abs
+                0x80068bca                SDivide
+                0x80066d20                ReadIntegerArray
+                0x80064ce0                CompareStrings
+                0x8006a09e                LowerChar
+                0x8006a376                InitUdpSocket
+                0x80068de4                ClearBuffer
+                0x80069232                Upper
+                0x80068216                InitStructArray
+                0x80069308                MakeLower
+                0x800693e8                IsVolume
+                0x80066772                RemoveByLength
+                0x80068466                CheckStringOutputArrayIndex
+                0x80069612                WriteLongIntegerArray
+                0x80069e9a                InitRampInfoStructArray
+                0x800686ac                HighWord
+                0x80064fa8                ResizeString
+                0x8006938e                IsDirectory
+                0x80066f40                ReadLongIntegerArray
+                0x8006869e                Low
+                0x8006614c                Gather
+                0x80069336                MakeUpper
+                0x80067d9c                InitStringStruct
+                0x80069d86                CheckStringArrayBounds
+                0x80068acc                CheckDenominator
+                0x80069fa2                hextoi
+                0x800676c4                WriteStringArray
+                0x8006858e                SetByte
+                0x80069e44                InitializeRampInfo
+                0x8006a1e0                UnLockInputSema
+                0x80069508                WriteSignedLongInteger
+                0x80067e8e                InitNvramStringStruct
+ *fill*         0x8006a406        0xa
+                0x8006a410                .=ALIGN(0x10)
+ *(.eh_frame)
+                0x8006a410                .=ALIGN(0x10)
+ *(.gnu.linkonce.t.*)
+                0x8006a410                .=ALIGN(0x4)
+                0x8006a410                __CTOR_LIST__=.
+                0x8006a410                ___CTOR_LIST__=.
+                0x8006a410        0x4 LONG 0x0 (((__CTOR_END__-__CTOR_LIST__)/0x4)-0x2)
+ *(.ctors)
+                0x8006a414        0x4 LONG 0x0
+                0x8006a418                __CTOR_END__=.
+                0x8006a418                __DTOR_LIST__=.
+                0x8006a418                ___DTOR_LIST__=.
+                0x8006a418        0x4 LONG 0x0 (((__DTOR_END__-__DTOR_LIST__)/0x4)-0x2)
+ *(.dtors)
+                0x8006a41c        0x4 LONG 0x0
+                0x8006a420                __DTOR_END__=.
+ *(.rodata)
+ .rodata        0x8006a420      0x23b S2_String_Check.o
+ .rodata        0x8006a65b      0x2f5 S2_MPS_Text_Centering.o
+ .rodata        0x8006a950      0x3fb S2_Knob_Acceleration__Pkt_.o
+ .rodata        0x8006ad4b      0x687 S2_DMPS_Text_Router_v1_0.o
+ .rodata        0x8006b3d2     0x2b1d S2_DMPS_Installer_Tools_v1_13.o
+ .rodata        0x8006deef      0x3b7 S2_APAD_Long_Text_Edit.o
+ .rodata        0x8006e2a6      0x457 S2_UserProgCmd_Interface_v1_0.o
+ .rodata        0x8006e6fd      0x24a S2_UserProgCmd_Interface_Serial_To_Analog_v1_0.o
+ .rodata        0x8006e947      0x814 S2_DMPS_System_Info_V1_0_2.o
+ .rodata        0x8006f15b      0x38d S2_Single_Line_Scroller_v1_2.o
+ .rodata        0x8006f4e8      0x261 S2_IP_Address_Edit_with_Up_Down.o
+ .rodata        0x8006f749      0x2de S2_IP_Address_Edit_Acceleration.o
+ .rodata        0x8006fa27      0x2d2 S2_DMPS_Analog_To_String_Conversion_v1_1.o
+ .rodata        0x8006fcf9      0x23b S2_DMPS_String_to_Analog_Conversion_v1_1.o
+ .rodata        0x8006ff34      0x23d S2_Dynamic_Zero_Delay__v1_00.o
+ .rodata        0x80070171      0x240 S2_Index_Translator_v1_00.o
+ .rodata        0x800703b1      0x240 S2_Managed_Power___Input_f_x__v1_02.o
+ .rodata        0x800705f1      0x24f S2_Managed_Power___Input_v1_00.o
+ .rodata        0x80070840      0x22f S2_Digital_Edge_Detection_v1_00.o
+ .rodata        0x80070a6f      0x22f S2_Managed_Power_v1_00.o
+ .rodata        0x80070c9e      0x51b S2_DirecTV_Ethernet_Control_v1_02.o
+ .rodata        0x800711b9      0xc54 library.o
+ *(.gcc_except_table)
+ *fill*         0x80071e0d        0x1
+                0x80071e0e                .=ALIGN(0x2)
+                0x80071e0e                __INIT_SECTION__=.
+                0x80071e0e        0x4 LONG 0x4e560000
+ *(.init)
+                0x80071e12        0x2 SHORT 0x4e5e
+                0x80071e14        0x2 SHORT 0x4e75
+                0x80071e16                __FINI_SECTION__=.
+                0x80071e16        0x4 LONG 0x4e560000
+ *(.fini)
+                0x80071e1a        0x2 SHORT 0x4e5e
+                0x80071e1c        0x2 SHORT 0x4e75
+ *(.lit)
+ *fill*         0x80071e1e        0x2
+                0x80071e20                .=ALIGN(0x10)
+                0x80071e20                _etext=.
+                0x80071e20                etext=.
+
+.data           0x80071e20        0x0
+                0x80071e20                copy_start=.
+ *(.shdata)
+ *(.data)
+ *(.gnu.linkonce.d.*)
+                0x80071e20                .=ALIGN(0x10)
+                0x80071e20                _edata=.
+                0x80071e20                copy_end=.
+
+.got
+ *(.got.plt)
+ *(.got)
+
+EntryList       0x80071e20     0x1650
+ *(EntryList)
+ EntryList      0x80071e20      0x110 S2_String_Check.o
+                0x80071e20                S2_String_Check_Entry
+ EntryList      0x80071f30      0x110 S2_MPS_Text_Centering.o
+                0x80071f30                S2_MPS_Text_Centering_Entry
+ EntryList      0x80072040      0x110 S2_Knob_Acceleration__Pkt_.o
+                0x80072040                S2_Knob_Acceleration__Pkt__Entry
+ EntryList      0x80072150      0x110 S2_DMPS_Text_Router_v1_0.o
+                0x80072150                S2_DMPS_Text_Router_v1_0_Entry
+ EntryList      0x80072260      0x110 S2_DMPS_Installer_Tools_v1_13.o
+                0x80072260                S2_DMPS_Installer_Tools_v1_13_Entry
+ EntryList      0x80072370      0x110 S2_APAD_Long_Text_Edit.o
+                0x80072370                S2_APAD_Long_Text_Edit_Entry
+ EntryList      0x80072480      0x110 S2_UserProgCmd_Interface_v1_0.o
+                0x80072480                S2_UserProgCmd_Interface_v1_0_Entry
+ EntryList      0x80072590      0x110 S2_UserProgCmd_Interface_Serial_To_Analog_v1_0.o
+                0x80072590                S2_UserProgCmd_Interface_Serial_To_Analog_v1_0_Entry
+ EntryList      0x800726a0      0x110 S2_DMPS_System_Info_V1_0_2.o
+                0x800726a0                S2_DMPS_System_Info_V1_0_2_Entry
+ EntryList      0x800727b0      0x110 S2_Single_Line_Scroller_v1_2.o
+                0x800727b0                S2_Single_Line_Scroller_v1_2_Entry
+ EntryList      0x800728c0      0x110 S2_IP_Address_Edit_with_Up_Down.o
+                0x800728c0                S2_IP_Address_Edit_with_Up_Down_Entry
+ EntryList      0x800729d0      0x110 S2_IP_Address_Edit_Acceleration.o
+                0x800729d0                S2_IP_Address_Edit_Acceleration_Entry
+ EntryList      0x80072ae0      0x110 S2_DMPS_Analog_To_String_Conversion_v1_1.o
+                0x80072ae0                S2_DMPS_Analog_To_String_Conversion_v1_1_Entry
+ EntryList      0x80072bf0      0x110 S2_DMPS_String_to_Analog_Conversion_v1_1.o
+                0x80072bf0                S2_DMPS_String_to_Analog_Conversion_v1_1_Entry
+ EntryList      0x80072d00      0x110 S2_Dynamic_Zero_Delay__v1_00.o
+                0x80072d00                S2_Dynamic_Zero_Delay__v1_00_Entry
+ EntryList      0x80072e10      0x110 S2_Index_Translator_v1_00.o
+                0x80072e10                S2_Index_Translator_v1_00_Entry
+ EntryList      0x80072f20      0x110 S2_Managed_Power___Input_f_x__v1_02.o
+                0x80072f20                S2_Managed_Power___Input_f_x__v1_02_Entry
+ EntryList      0x80073030      0x110 S2_Managed_Power___Input_v1_00.o
+                0x80073030                S2_Managed_Power___Input_v1_00_Entry
+ EntryList      0x80073140      0x110 S2_Digital_Edge_Detection_v1_00.o
+                0x80073140                S2_Digital_Edge_Detection_v1_00_Entry
+ EntryList      0x80073250      0x110 S2_Managed_Power_v1_00.o
+                0x80073250                S2_Managed_Power_v1_00_Entry
+ EntryList      0x80073360      0x110 S2_DirecTV_Ethernet_Control_v1_02.o
+                0x80073360                S2_DirecTV_Ethernet_Control_v1_02_Entry
+                0x80073470                .=ALIGN(0x4)
+
+FunctionList    0x80073470        0x4
+ *(FunctionList)
+ FunctionList   0x80073470        0x4 globals.o
+                0x80073470                g_pFunctions
+                0x80073474                .=ALIGN(0x4)
+
+.bss            0x80073474        0x0
+                0x80073474                .=ALIGN(0x4)
+                0x80073474                __bss_start=.
+ *(.shbss)
+ *(.bss)
+ *(COMMON)
+                0x80073478                _end=ALIGN(0x8)
+                0x80073478                __end=_end
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+LOAD S2_String_Check.o
+LOAD S2_MPS_Text_Centering.o
+LOAD S2_Knob_Acceleration__Pkt_.o
+LOAD S2_DMPS_Text_Router_v1_0.o
+LOAD S2_DMPS_Installer_Tools_v1_13.o
+LOAD S2_APAD_Long_Text_Edit.o
+LOAD S2_UserProgCmd_Interface_v1_0.o
+LOAD S2_UserProgCmd_Interface_Serial_To_Analog_v1_0.o
+LOAD S2_DMPS_System_Info_V1_0_2.o
+LOAD S2_Single_Line_Scroller_v1_2.o
+LOAD S2_IP_Address_Edit_with_Up_Down.o
+LOAD S2_IP_Address_Edit_Acceleration.o
+LOAD S2_DMPS_Analog_To_String_Conversion_v1_1.o
+LOAD S2_DMPS_String_to_Analog_Conversion_v1_1.o
+LOAD S2_Dynamic_Zero_Delay__v1_00.o
+LOAD S2_Index_Translator_v1_00.o
+LOAD S2_Managed_Power___Input_f_x__v1_02.o
+LOAD S2_Managed_Power___Input_v1_00.o
+LOAD S2_Digital_Edge_Detection_v1_00.o
+LOAD S2_Managed_Power_v1_00.o
+LOAD S2_DirecTV_Ethernet_Control_v1_02.o
+LOAD globals.o
+LOAD library.o
+OUTPUT(_S2_2016_08_16_QR_TVRM.spl elf32-m68k)
+
+.comment        0x80073474      0x36a
+ .comment       0x80073474       0x26 S2_String_Check.o
+ .comment       0x8007349a       0x26 S2_MPS_Text_Centering.o
+ .comment       0x800734c0       0x26 S2_Knob_Acceleration__Pkt_.o
+ .comment       0x800734e6       0x26 S2_DMPS_Text_Router_v1_0.o
+ .comment       0x8007350c       0x26 S2_DMPS_Installer_Tools_v1_13.o
+ .comment       0x80073532       0x26 S2_APAD_Long_Text_Edit.o
+ .comment       0x80073558       0x26 S2_UserProgCmd_Interface_v1_0.o
+ .comment       0x8007357e       0x26 S2_UserProgCmd_Interface_Serial_To_Analog_v1_0.o
+ .comment       0x800735a4       0x26 S2_DMPS_System_Info_V1_0_2.o
+ .comment       0x800735ca       0x26 S2_Single_Line_Scroller_v1_2.o
+ .comment       0x800735f0       0x26 S2_IP_Address_Edit_with_Up_Down.o
+ .comment       0x80073616       0x26 S2_IP_Address_Edit_Acceleration.o
+ .comment       0x8007363c       0x26 S2_DMPS_Analog_To_String_Conversion_v1_1.o
+ .comment       0x80073662       0x26 S2_DMPS_String_to_Analog_Conversion_v1_1.o
+ .comment       0x80073688       0x26 S2_Dynamic_Zero_Delay__v1_00.o
+ .comment       0x800736ae       0x26 S2_Index_Translator_v1_00.o
+ .comment       0x800736d4       0x26 S2_Managed_Power___Input_f_x__v1_02.o
+ .comment       0x800736fa       0x26 S2_Managed_Power___Input_v1_00.o
+ .comment       0x80073720       0x26 S2_Digital_Edge_Detection_v1_00.o
+ .comment       0x80073746       0x26 S2_Managed_Power_v1_00.o
+ .comment       0x8007376c       0x26 S2_DirecTV_Ethernet_Control_v1_02.o
+ .comment       0x80073792       0x26 globals.o
+ .comment       0x800737b8       0x26 library.o

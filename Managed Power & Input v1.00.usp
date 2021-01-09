@@ -1,0 +1,231 @@
+#DEFAULT_VOLATILE
+
+#DEFINE_CONSTANT MAX_INPUT 16
+
+
+DIGITAL_INPUT 	POWER_ON, POWER_OFF, 
+				POWER_ON_FB, POWER_OFF_FB, 
+				POWER_ON_DELAY_FB, POWER_OFF_DELAY_FB, SWITCH_DELAY_FB,
+				SMART_POWER, SMART_SWITCHER, SMART_POWER_OFF_DELAY, PRE_POWER_ON_INPUT_SWITCHER,
+				INPUT[ MAX_INPUT ], 
+				INPUT_FB[ MAX_INPUT ];
+
+				
+DIGITAL_OUTPUT	POWER_ON_TRIG, POWER_OFF_TRIG,
+				POWER_ON_DELAY, POWER_OFF_DELAY, SWITCH_DELAY,
+				POWER_ON_DELAY_WARNING, POWER_OFF_DELAY_WARNING, SWITCH_DELAY_WARNING, 
+				INPUT_TRIG[ MAX_INPUT ];				
+				 
+ANALOG_INPUT 	PULSE_TIME;
+
+Integer gnInput, gnDoPowerOn, gnDoPowerOff, gnDoSwitch;
+
+
+Function InputSwitch( )
+{
+	If( gnInput > 0 && gnInput <= MAX_INPUT )
+	{	
+		If( !INPUT_FB[ gnInput ] || !SMART_SWITCHER )
+		{		
+			Pulse( PULSE_TIME, INPUT_TRIG[ gnInput ] );
+			Pulse( 1, SWITCH_DELAY );
+		}
+	}
+}
+
+Integer_Function PowerOn( )
+{
+	Integer nReturn;
+	
+	If( !POWER_ON_FB || !SMART_POWER )
+	{
+		Pulse( PULSE_TIME, POWER_ON_TRIG );
+		Pulse( 1, POWER_ON_DELAY );
+		
+		nReturn = 1;
+	}
+	Else
+	{
+		nReturn = 0;
+	}
+	
+	Return( nReturn );
+}
+
+Integer_Function PowerOff( )
+{
+	Integer nReturn;
+	
+	Pulse( PULSE_TIME, POWER_OFF_TRIG );
+
+	If( !POWER_OFF_FB || !SMART_POWER )
+	{
+		Pulse( 1, POWER_OFF_DELAY );
+		
+		nReturn = 1;
+	}		
+	Else
+	{
+		nReturn = 0;
+	}               
+	
+	Return( nReturn );
+}
+
+PUSH POWER_ON
+{
+	If( POWER_OFF_DELAY_FB )
+	{
+		Pulse( 1, POWER_OFF_DELAY_WARNING );
+		If( SMART_POWER_OFF_DELAY )
+		{
+			gnDoPowerOn = 1;
+			gnDoPowerOff = 0;
+		}
+	}
+	Else If( POWER_ON_DELAY_FB )
+	{
+		Pulse( 1, POWER_ON_DELAY_WARNING );
+		gnDoPowerOff = 0;
+	}
+	Else
+	{
+		PowerOn( );		
+	}			
+}
+
+PUSH POWER_OFF
+{
+	PowerOff( );
+	If( POWER_ON_DELAY_FB )
+	{
+		Pulse( 1, POWER_ON_DELAY_WARNING );
+		gnDoPowerOff = 1;
+		gnDoPowerOn = 0;
+		gnDoSwitch = 0;
+	}
+	Else If( POWER_OFF_DELAY_FB )
+	{
+		Pulse( 1, POWER_OFF_DELAY_WARNING );
+		gnDoPowerOn = 0;
+		gnDoSwitch = 0;
+	}	
+	Else
+	{
+		gnDoSwitch = 0;
+		PowerOff( );
+	}
+}
+
+PUSH INPUT
+{
+	gnInput = GetLastModifiedArrayIndex( );
+			
+	If( POWER_OFF_DELAY_FB )
+	{
+		Pulse( 1, POWER_OFF_DELAY_WARNING );
+		If( SMART_POWER_OFF_DELAY )
+		{
+			gnDoSwitch = 1;
+		}
+	}
+	Else If( POWER_ON_DELAY_FB )
+	{
+		Pulse( 1, POWER_ON_DELAY_WARNING );
+		gnDoPowerOff = 0;
+		gnDoSwitch = 1;			
+	}
+	Else If( SWITCH_DELAY_FB )
+	{
+	    Pulse( 1, SWITCH_DELAY_WARNING );
+	    gnDoSwitch = 1;
+	}
+	Else
+	{
+		If( PRE_POWER_ON_INPUT_SWITCHER && ( !POWER_ON_FB || !SMART_POWER ) )
+		{
+			gnDoSwitch = 1;
+			InputSwitch( );		
+		}
+		Else
+		{
+			If( PowerOn( ) = 1 )
+			{
+				gnDoPowerOff = 0;
+				gnDoSwitch = 1;
+			}
+			Else
+			{
+				InputSwitch( );
+			}
+		}
+	}
+}
+
+RELEASE POWER_ON_DELAY_FB
+{
+	If( gnDoSwitch )
+	{
+		gnDoSwitch = 0;
+		InputSwitch( );
+	}
+	
+	If( gnDoPowerOff )
+	{
+		gnDoPowerOff = 0;
+		PowerOff( );
+	}
+}
+
+RELEASE POWER_OFF_DELAY_FB
+{
+	If( gnDoSwitch )
+	{
+		gnDoSwitch = 0;				
+		If( PRE_POWER_ON_INPUT_SWITCHER && ( !POWER_ON_FB || !SMART_POWER ) )
+		{
+			gnDoSwitch = 1;
+			InputSwitch( );		
+		}
+		Else
+		{
+			If( PowerOn( ) = 1 )
+			{
+				gnDoSwitch = 1;
+			}
+			Else
+			{
+				InputSwitch( );
+			}
+		}
+	}
+	
+	If( gnDoPowerOn )
+	{
+		gnDoPowerOn = 0;
+		PowerOn( );
+	}
+}
+
+RELEASE SWITCH_DELAY_FB
+{
+    If( gnDoSwitch )
+	{
+		gnDoSwitch = 0;				
+		If( PowerOn( ) = 1 )
+		{
+			gnDoSwitch = 1;
+		}
+		Else
+		{
+			InputSwitch( );
+		}
+	}
+}
+
+Function Main( )
+{
+	gnDoPowerOn = 0;
+	gnDoPowerOff = 0;
+	gnDoSwitch = 0;
+}

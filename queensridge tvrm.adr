@@ -1,0 +1,13 @@
+[Entries]
+DMPS=tcp 192.168.100.31
+iPad=tcp 192.168.100.199
+TEMP=tcp 192.168.100.207
+
+[Settings]
+DefaultEntry=
+
+[Comments]
+DMPS=
+iPad=
+TEMP=
+

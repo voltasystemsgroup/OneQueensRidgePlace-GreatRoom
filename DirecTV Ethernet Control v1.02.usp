@@ -1,0 +1,211 @@
+
+
+#DEFAULT_VOLATILE
+
+#DEFINE_CONSTANT _DEBUG_ 0
+
+#DEFINE_CONSTANT MAX_TCP_BUF 8192
+#DEFINE_CONSTANT MAX_COMMAND_CHARS 32
+#DEFINE_CONSTANT DTV_COMMUNICATION_PORT 8080
+
+
+
+
+STRING_PARAMETER IPA[ 16 ];
+
+#BEGIN_PARAMETER_PROPERTIES IPA
+
+	PropDefaultUnit 	= 	UnitString;
+	PropDefaultValue 	= 	"127.0.0.1";
+
+#END_PARAMETER_PROPERTIES
+
+DIGITAL_INPUT 	_SKIP_,
+				_SKIP_,
+				POWER,
+				POWER_ON,
+				POWER_OFF,
+				FORMAT,
+				PAUSE,
+				REW,
+				REPLAY,
+				STOP,
+				ADVANCE,
+				FFWD,
+				REC,
+				PLAY,
+				GUIDE,
+				ACTIVE,
+				LIST,
+				EXIT,
+				BACK,
+				MENU,
+				INFO,
+				NAV_UP,
+				NAV_DOWN,
+				NAV_LEFT,
+				NAV_RIGHT,
+				NAV_UP_HELD,
+				NAV_DOWN_HELD,
+				NAV_LEFT_HELD,
+				NAV_RIGHT_HELD,
+				SELECT,
+				RED,
+				GREEN,
+				YELLOW,
+				BLUE,
+				CH_UP,
+				CH_DOWN,
+				CH_UP_HELD,
+				CH_DOWN_HELD,
+				PREV,
+				DIGIT_0,
+				DIGIT_1,
+				DIGIT_2,
+				DIGIT_3,
+				DIGIT_4,
+				DIGIT_5,
+				DIGIT_6,
+				DIGIT_7,
+				DIGIT_8,
+				DIGIT_9,
+				DASH,
+				ENTER;
+
+
+ANALOG_INPUT	_SKIP_,
+				CHANNEL;
+
+
+
+//Globals
+TCP_Client 	DTV_Command_TCPClient[ MAX_TCP_BUF ];
+String 		gsCommand[ MAX_COMMAND_CHARS ];
+
+
+
+Function ConnectToSendCommand( )
+{
+    Signed_Integer siErr;
+	
+	siErr = SocketConnectClient( DTV_Command_TCPClient, IPA, DTV_COMMUNICATION_PORT, 0 );
+		
+	If( siErr < 0 ) 
+	{
+		Print( "%s - SocketConnect Error = %d\n", GetSymbolInstanceName( ), siErr );
+	}
+}
+
+CHANGE CHANNEL	{ gsCommand = "!CHANNEL!";	ConnectToSendCommand( ); }
+
+PUSH POWER 		{ gsCommand = "power"; 		ConnectToSendCommand( ); }
+PUSH POWER_ON 	{ gsCommand = "poweron"; 	ConnectToSendCommand( ); } 
+PUSH POWER_OFF 	{ gsCommand = "poweroff"; 	ConnectToSendCommand( ); } 
+PUSH FORMAT 	{ gsCommand = "format"; 	ConnectToSendCommand( ); } 
+PUSH PAUSE 		{ gsCommand = "pause"; 		ConnectToSendCommand( ); } 
+PUSH REW 		{ gsCommand = "rew"; 		ConnectToSendCommand( ); } 
+PUSH REPLAY 	{ gsCommand = "replay"; 	ConnectToSendCommand( ); } 
+PUSH STOP 		{ gsCommand = "stop"; 		ConnectToSendCommand( ); } 
+PUSH ADVANCE 	{ gsCommand = "advance"; 	ConnectToSendCommand( ); } 
+PUSH FFWD 		{ gsCommand = "ffwd"; 		ConnectToSendCommand( ); } 
+PUSH REC 		{ gsCommand = "record"; 	ConnectToSendCommand( ); } 
+PUSH PLAY 		{ gsCommand = "play"; 		ConnectToSendCommand( ); } 
+PUSH GUIDE 		{ gsCommand = "guide"; 		ConnectToSendCommand( ); } 
+PUSH ACTIVE 	{ gsCommand = "active"; 	ConnectToSendCommand( ); } 
+PUSH LIST 		{ gsCommand = "list"; 		ConnectToSendCommand( ); } 
+PUSH EXIT 		{ gsCommand = "exit"; 		ConnectToSendCommand( ); } 
+PUSH BACK 		{ gsCommand = "back"; 		ConnectToSendCommand( ); } 
+PUSH MENU 		{ gsCommand = "menu"; 		ConnectToSendCommand( ); } 
+PUSH INFO 		{ gsCommand = "info"; 		ConnectToSendCommand( ); } 
+PUSH SELECT 	{ gsCommand = "select"; 	ConnectToSendCommand( ); } 
+PUSH RED 		{ gsCommand = "red"; 		ConnectToSendCommand( ); } 
+PUSH GREEN 		{ gsCommand = "green"; 		ConnectToSendCommand( ); } 
+PUSH YELLOW 	{ gsCommand = "yellow"; 	ConnectToSendCommand( ); } 
+PUSH BLUE 		{ gsCommand = "blue"; 		ConnectToSendCommand( ); } 
+PUSH PREV 		{ gsCommand = "prev"; 		ConnectToSendCommand( ); } 
+PUSH DIGIT_0 	{ gsCommand = "0"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_1 	{ gsCommand = "1"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_2 	{ gsCommand = "2"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_3 	{ gsCommand = "3"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_4 	{ gsCommand = "4"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_5 	{ gsCommand = "5"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_6 	{ gsCommand = "6"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_7 	{ gsCommand = "7"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_8 	{ gsCommand = "8"; 			ConnectToSendCommand( ); } 
+PUSH DIGIT_9 	{ gsCommand = "9"; 			ConnectToSendCommand( ); } 
+PUSH DASH 		{ gsCommand = "dash"; 		ConnectToSendCommand( ); } 
+PUSH ENTER 		{ gsCommand = "enter"; 		ConnectToSendCommand( ); }
+
+PUSH NAV_UP 	{ gsCommand = "up"; 		ConnectToSendCommand( ); } 
+PUSH NAV_DOWN 	{ gsCommand = "down"; 		ConnectToSendCommand( ); } 
+PUSH NAV_LEFT 	{ gsCommand = "left"; 		ConnectToSendCommand( ); } 
+PUSH NAV_RIGHT 	{ gsCommand = "right"; 		ConnectToSendCommand( ); } 
+PUSH CH_UP 		{ gsCommand = "chanup"; 	ConnectToSendCommand( ); } 
+PUSH CH_DOWN 	{ gsCommand = "chandown"; 	ConnectToSendCommand( ); }
+
+PUSH NAV_UP_HELD 		{ gsCommand = "up&hold=keyDown"; 		ConnectToSendCommand( ); } 
+PUSH NAV_DOWN_HELD 		{ gsCommand = "down&hold=keyDown"; 		ConnectToSendCommand( ); } 
+PUSH NAV_LEFT_HELD 		{ gsCommand = "left&hold=keyDown"; 		ConnectToSendCommand( ); } 
+PUSH NAV_RIGHT_HELD		{ gsCommand = "right&hold=keyDown"; 	ConnectToSendCommand( ); } 
+PUSH CH_UP_HELD 		{ gsCommand = "chanup&hold=keyDown"; 	ConnectToSendCommand( ); } 
+PUSH CH_DOWN_HELD 		{ gsCommand = "chandown&hold=keyDown"; 	ConnectToSendCommand( ); } 
+
+RELEASE NAV_UP_HELD 	{ gsCommand = "up&hold=keyUp"; 			ConnectToSendCommand( ); } 
+RELEASE NAV_DOWN_HELD 	{ gsCommand = "down&hold=keyUp"; 		ConnectToSendCommand( ); } 
+RELEASE NAV_LEFT_HELD 	{ gsCommand = "left&hold=keyUp"; 		ConnectToSendCommand( ); } 
+RELEASE NAV_RIGHT_HELD 	{ gsCommand = "right&hold=keyUp"; 		ConnectToSendCommand( ); } 
+RELEASE CH_UP_HELD 		{ gsCommand = "chanup&hold=keyUp"; 		ConnectToSendCommand( ); } 
+RELEASE CH_DOWN_HELD 	{ gsCommand = "chandown&hold=keyUp"; 	ConnectToSendCommand( ); } 
+
+SOCKETSTATUS DTV_Command_TCPClient
+{	
+	Switch( DTV_Command_TCPClient.SocketStatus )
+	{
+		Case( 3 ): //connection failed
+		{
+			SocketDisconnectClient( DTV_Command_TCPClient );
+		} 
+		Case( 4 ): //connection broken remotely
+		{
+			SocketDisconnectClient( DTV_Command_TCPClient );
+		}
+		Case( 7 ): //dns lookup failed
+		{
+			SocketDisconnectClient( DTV_Command_TCPClient );
+		}
+	}
+	If( _DEBUG_ ) Print( "%s - Socket Status = %d\n", GetSymbolInstanceName( ), DTV_Command_TCPClient.SocketStatus );
+}
+
+
+SOCKETCONNECT DTV_Command_TCPClient
+{
+	String sGet[ MAX_TCP_BUF ];
+		
+	If( gsCommand = "!CHANNEL!" )
+		MakeString( sGet, "GET /tv/tune?major=%d&minor=65535 HTTP/1.1\n\n", CHANNEL );
+	Else
+		MakeString( sGet, "GET /remote/processKey?key=%s HTTP/1.1\n\n", gsCommand );
+				
+	If( _DEBUG_ ) Print( "%s", sGet );
+	
+	SocketSend( DTV_Command_TCPClient, sGet );
+}
+
+
+SOCKETRECEIVE DTV_Command_TCPClient
+{
+	String sDump[ MAX_TCP_BUF ];
+
+	If( _DEBUG_ )
+	{ 
+		Print( "\n\n%s\n\n", DTV_Command_TCPClient.SocketRXBuf );
+		Delay( 5000 );
+	}
+	
+	//response parsing to be done here    
+	
+	ClearBuffer( DTV_Command_TCPClient.SocketRXBuf );
+	
+	SocketDisconnectClient( DTV_Command_TCPClient );
+}

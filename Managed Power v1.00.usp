@@ -1,0 +1,56 @@
+#DEFAULT_VOLATILE
+
+DIGITAL_INPUT	POWER_ON, POWER_OFF, 
+				POWER_ON_FB, POWER_OFF_FB, 
+				SMART_POWER, AUTO_POWER;
+				
+DIGITAL_OUTPUT	POWER_ON_TRIG, POWER_OFF_TRIG;
+
+
+
+
+Function Power( Integer nState )
+{
+	Switch( nState )
+	{
+		Case( ON ):
+		{
+			If( !POWER_ON_FB || !SMART_POWER )
+			{
+				Pulse( 1, POWER_ON_TRIG );
+			}
+		}
+		Case( OFF ):	
+		{
+			If( !POWER_OFF_FB || !SMART_POWER )
+			{
+				Pulse( 1, POWER_OFF_TRIG );
+			}
+		}
+	}
+}
+
+PUSH POWER_ON
+{
+	Power( ON );	
+}
+
+PUSH POWER_OFF
+{   
+	If( !AUTO_POWER )
+	 	Power( OFF );
+}
+
+PUSH AUTO_POWER
+{
+	Power( ON );
+}
+
+RELEASE POWER_ON_FB
+{
+	If( AUTO_POWER )
+		Power( ON );
+}
+
+
+
