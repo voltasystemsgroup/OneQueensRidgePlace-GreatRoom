@@ -65,7 +65,7 @@ namespace CrestronModule_BSS_SOUNDWEB_LONDON_SOURCE_SELECTOR_V4_0
             SplusExecutionContext __context__ = SplusThreadStartCode(__SignalEventArg__);
             
             __context__.SourceCodeLine = 62;
-            CreateWait ( "__SPLS_TMPVAR__WAITLABEL_31__" , 20 , __SPLS_TMPVAR__WAITLABEL_31___Callback ) ;
+            CreateWait ( "__SPLS_TMPVAR__WAITLABEL_5__" , 20 , __SPLS_TMPVAR__WAITLABEL_5___Callback ) ;
             
             
         }
@@ -75,7 +75,7 @@ namespace CrestronModule_BSS_SOUNDWEB_LONDON_SOURCE_SELECTOR_V4_0
         
     }
     
-public void __SPLS_TMPVAR__WAITLABEL_31___CallbackFn( object stateInfo )
+public void __SPLS_TMPVAR__WAITLABEL_5___CallbackFn( object stateInfo )
 {
 
     try
@@ -205,7 +205,7 @@ public override void LogosSplusInitialize()
     RX__DOLLAR__ = new Crestron.Logos.SplusObjects.BufferInput( RX__DOLLAR____AnalogSerialInput__, 400, this );
     m_StringInputList.Add( RX__DOLLAR____AnalogSerialInput__, RX__DOLLAR__ );
     
-    __SPLS_TMPVAR__WAITLABEL_31___Callback = new WaitFunction( __SPLS_TMPVAR__WAITLABEL_31___CallbackFn );
+    __SPLS_TMPVAR__WAITLABEL_5___Callback = new WaitFunction( __SPLS_TMPVAR__WAITLABEL_5___CallbackFn );
     
     INPUT__DOLLAR__.OnAnalogChange.Add( new InputChangeHandlerWrapper( INPUT__DOLLAR___OnChange_0, false ) );
     SUBSCRIBE__DOLLAR__.OnDigitalPush.Add( new InputChangeHandlerWrapper( SUBSCRIBE__DOLLAR___OnPush_1, false ) );
@@ -227,7 +227,7 @@ public override void LogosSimplSharpInitialize()
 public CrestronModuleClass_BSS_SOUNDWEB_LONDON_SOURCE_SELECTOR_V4_0 ( string InstanceName, string ReferenceID, Crestron.Logos.SplusObjects.CrestronStringEncoding nEncodingType ) : base( InstanceName, ReferenceID, nEncodingType ) {}
 
 
-private WaitFunction __SPLS_TMPVAR__WAITLABEL_31___Callback;
+private WaitFunction __SPLS_TMPVAR__WAITLABEL_5___Callback;
 
 
 const uint SUBSCRIBE__DOLLAR____DigitalInput__ = 0;
