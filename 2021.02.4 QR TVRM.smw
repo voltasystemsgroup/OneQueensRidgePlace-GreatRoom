@@ -3346,6 +3346,35 @@ Sy1=0
 Mx1=0
 ]
 [
+ObjTp=Bw
+H=1
+Lx=0
+Ly=457
+Rx=1389
+Ry=914
+Xm=-1
+Ym=-1
+SH=269
+Z=100
+P=5712
+Ht=4
+Hi=13
+]
+[
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=1389
+Ry=457
+Xm=-1
+Ym=-1
+SH=52
+Z=100
+Ht=1
+Hi=4
+]
+[
 ObjTp=Et
 H=1
 DvH=695
@@ -4518,9 +4547,9 @@ mP=10
 P1=
 P2=Center TV
 P3=Top Left TV
-P4=Bottom Left TV
+P4=Left TV
 P5=Top Right TV
-P6=Bottom Right TV
+P6=Right TV
 P7=Great Room
 P8=Barista
 P9=Billiards Room
@@ -5171,10 +5200,9 @@ SmVr=1131
 PrH=81
 CF=2
 Cmn1=SOURCE SELECT
-mC=3
+mC=2
 C1=84
 C2=85
-C3=86
 ]
 [
 ObjTp=Sm
@@ -5259,27 +5287,6 @@ P9=8d
 P10=9d
 P11=10d
 P12=11d
-]
-[
-ObjTp=Sm
-H=86
-SmC=98
-Nm=Stepper
-ObjVer=1
-SmVr=1131
-PrH=83
-CF=2
-n1I=1
-n1O=2
-mI=1
-I1=2704
-mO=2
-tO=2
-O1=3040
-O2=2745
-mP=2
-P1=.5s
-P2=.5s
 ]
 [
 ObjTp=Sm
@@ -5461,10 +5468,9 @@ SmVr=1131
 PrH=93
 CF=2
 Cmn1=SOURCE SELECT
-mC=3
+mC=2
 C1=96
 C2=97
-C3=98
 ]
 [
 ObjTp=Sm
@@ -5549,27 +5555,6 @@ P9=8d
 P10=9d
 P11=10d
 P12=11d
-]
-[
-ObjTp=Sm
-H=98
-SmC=98
-Nm=Stepper
-ObjVer=1
-SmVr=1131
-PrH=95
-CF=2
-n1I=1
-n1O=2
-mI=1
-I1=2706
-mO=2
-tO=2
-O1=3040
-O2=2793
-mP=2
-P1=.5s
-P2=.5s
 ]
 [
 ObjTp=Sm
